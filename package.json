@@ -1,13 +1,18 @@
 {
   "name": "dispatcher.js",
   "version": "1.0.0",
+  "exports": "./src/main.js",
+  "type": "module",
   "description": "",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --inline-diffs --parallel --require test/fixtures.mjs"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
 }

@@ -18,11 +18,10 @@ jobs:
           fetch-depth: '0'
       - run: npm install
       - run: npm run test
-
-  # sonar:
-  #   uses: PhilippAuch/workflows/.github/workflows/sonar.yaml@main
-  #   with:
-  #     branch-name: '${{ inputs.branch-name }}'
-  #     sonar-project-key: 'philipp-auch-de_jiramanager'
-  #   secrets:
-  #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+# sonar:
+#   uses: PhilippAuch/workflows/.github/workflows/sonar.yaml@main
+#   with:
+#     branch-name: '${{ inputs.branch-name }}'
+#     sonar-project-key: 'philipp-auch-de_jiramanager'
+#   secrets:
+#     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
