@@ -1,7 +1,7 @@
 {
   "name": "dispatcher.js",
   "version": "1.0.0",
-  "exports": "./src/main.js",
+  "exports": "./src/index.js",
   "type": "module",
   "description": "",
   "main": "src/index.js",
