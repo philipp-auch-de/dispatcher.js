@@ -1,5 +1,9 @@
 # dispatcher.js
 
+```
+npm run test
+```
+
 ## Automatic version increase
 
 | Commit message                                                                                                                                                                                   | Release type  |
