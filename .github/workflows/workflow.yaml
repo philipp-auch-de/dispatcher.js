@@ -12,15 +12,15 @@ jobs:
   test:
     uses: PhilippAuch/workflows/.github/workflows/testNode.yaml@main
 
-  # sonar:
-  #   uses: PhilippAuch/workflows/.github/workflows/sonar.yaml@main
-  #   needs: test
-  #   with:
-  #     branch-name: '${{ inputs.branch-name }}'
-  #     sonar-project-key: 'philipp-auch-de_jiramanager'
-  #   secrets:
-  #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  sonar:
+    uses: PhilippAuch/workflows/.github/workflows/sonar.yaml@main
+    needs: test
+    with:
+      branch-name: '${{ inputs.branch-name }}'
+      sonar-project-key: 'philipp-auch-de_dispatcher-js'
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   publish:
-    needs: test
+    needs: sonar
     uses: PhilippAuch/workflows/.github/workflows/publishRelease.yaml@main
