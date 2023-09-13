@@ -1,8 +1,8 @@
 // import { config } from '../src/config.js';
-// import { info } from '../src/util/logging.js';
+import { info } from '../src/index.js';
 
 export function mochaGlobalSetup() {
-  // info('MOCHA', 'Logging reduced for Unittests');
+  info('MOCHA', 'Logging reduced for Unittests');
 }
 
 export const mochaHooks = {
