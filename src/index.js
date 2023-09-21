@@ -4,3 +4,4 @@ export function init() {
 
 export { fine, debug, info, warn, error, errorWithTicket } from './util/logging.js';
 export { AE, AMPERSAND, APOSTROPHE, EQUALS, HASHTAG, QUOTATION, SPACE, TILDE } from './util/JQLHelper.js';
+export { sleep, pad, waitSyncMS } from './util/generalUtil.js';
