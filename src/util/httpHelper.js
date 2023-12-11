@@ -1,5 +1,6 @@
 import pkg from 'xhr2';
 import { config } from '../dispatcherJsConfig.js';
+import { debug } from './logging.js';
 
 export async function _callUrl(method, url, data) {
   const xhr = new pkg.XMLHttpRequest();
