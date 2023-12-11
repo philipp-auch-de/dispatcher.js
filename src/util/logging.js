@@ -1,5 +1,4 @@
-// import { getCurrentFeature } from '../workQ.js';
-// import { config } from '../config.js';
+import { config } from '../dispatcherJsConfig.js';
 import { dateToIsoString } from './dateHelper.js';
 
 export class TicketError extends Error {
@@ -11,13 +10,11 @@ export class TicketError extends Error {
 }
 
 export function fine(source, ...data) {
-  // if (config.FINE_MODE)
-  log('FINE', COLOR.Dim + COLOR.FgWhite, source, data);
+  if (config.FINE_MODE) log('FINE', COLOR.Dim + COLOR.FgWhite, source, data);
 }
 
 export function debug(source, ...data) {
-  // if (config.DEBUG_MODE)
-  log('DEBUG', COLOR.FgWhite, source, data);
+  if (config.DEBUG_MODE) log('DEBUG', COLOR.FgWhite, source, data);
 }
 
 export function info(source, ...data) {
@@ -47,8 +44,7 @@ function log(level, color, source, data) {
   const featureString = 'NO_FEATURE';
   // const featureString = getCurrentFeature() ? getCurrentFeature().name : 'NO_FEATURE';
   let message = color;
-  // if (!config.IS_UNIT_TEST)
-  message += dateToIsoString(new Date());
+  if (!config.IS_UNIT_TEST) message += dateToIsoString(new Date());
   message += '[' + level + ']' + '[' + featureString + ']' + '[' + source + ']';
   args.unshift(message);
   args.push(COLOR.Reset);
