@@ -78,15 +78,16 @@ function getDayOfWeekByString(dayString) {
 }
 
 export function getDateByDayAndSetPos(date, day, setPos, interval) {
+  const intervalNum = Number.parseInt(interval) ? Number.parseInt(interval) : 1;
   const weekDay = getDayOfWeekByString(day);
   const setPosNumber = Number.parseInt(setPos);
   if (setPosNumber > 0) {
-    date.setMonth(date.getMonth() + 1, 1);
+    date.setMonth(date.getMonth() + intervalNum, 1);
     for (let i = date.getDay() % 7 === weekDay ? 1 : 0; i < setPosNumber; i++) {
       date = getNextWeekday(date, weekDay);
     }
   } else {
-    date.setMonth(date.getMonth() + 2, 0);
+    date.setMonth(date.getMonth() + intervalNum + 1, 0);
     for (let i = date.getDay() % 7 === weekDay ? 1 : 0; i < setPosNumber * -1; i++) {
       date = getPreviousWeekday(date, weekDay);
     }
