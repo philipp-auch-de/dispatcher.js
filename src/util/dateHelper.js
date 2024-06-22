@@ -6,18 +6,44 @@ export function dateToIsoString(date) {
   const tzo = -date.getTimezoneOffset();
   const dif = tzo >= 0 ? '+' : '-';
 
-  return date.getFullYear() + '-' + pad(date.getMonth() + 1, 2) + '-' + pad(date.getDate(), 2) + 'T' + pad(date.getHours(), 2) + ':' + pad(date.getMinutes(), 2) + ':' + pad(date.getSeconds(), 2) + dif + pad(Math.floor(Math.abs(tzo) / 60), 2) + ':' + pad(Math.abs(tzo) % 60, 2);
+  return (
+    date.getFullYear() +
+    '-' +
+    pad(date.getMonth() + 1, 2) +
+    '-' +
+    pad(date.getDate(), 2) +
+    'T' +
+    pad(date.getHours(), 2) +
+    ':' +
+    pad(date.getMinutes(), 2) +
+    ':' +
+    pad(date.getSeconds(), 2) +
+    dif +
+    pad(Math.floor(Math.abs(tzo) / 60), 2) +
+    ':' +
+    pad(Math.abs(tzo) % 60, 2)
+  );
 }
 
 export function dateToICALString(date) {
   if (typeof date === 'string') date = getDateFromString(date);
-  return date.getFullYear() + pad(date.getMonth() + 1, 2) + pad(date.getDate(), 2) + 'T' + pad(date.getHours(), 2) + pad(date.getMinutes(), 2) + pad(date.getSeconds(), 2);
+  return (
+    date.getFullYear() +
+    pad(date.getMonth() + 1, 2) +
+    pad(date.getDate(), 2) +
+    'T' +
+    pad(date.getHours(), 2) +
+    pad(date.getMinutes(), 2) +
+    pad(date.getSeconds(), 2)
+  );
 }
 
 export function dateToJQLString(date) {
   if (typeof date === 'string') date = getDateFromString(date);
 
-  return date.getFullYear() + '-' + pad(date.getMonth() + 1, 2) + '-' + pad(date.getDate(), 2) + ' ' + pad(date.getHours(), 2) + ':' + pad(date.getMinutes(), 2);
+  return (
+    date.getFullYear() + '-' + pad(date.getMonth() + 1, 2) + '-' + pad(date.getDate(), 2) + ' ' + pad(date.getHours(), 2) + ':' + pad(date.getMinutes(), 2)
+  );
 }
 
 Date.prototype.addDays = function (days) {
@@ -110,7 +136,9 @@ export function getDateFromString(input) {
   res = new Date(input);
   if (!isValidDate(res)) {
     while (input.length > 8 && input.length < 15) input += '0';
-    res = new Date(input.substring(0, 4) + '-' + input.substring(4, 6) + '-' + input.substring(6, 11) + ':' + input.substring(11, 13) + ':' + input.substring(13, 15));
+    res = new Date(
+      input.substring(0, 4) + '-' + input.substring(4, 6) + '-' + input.substring(6, 11) + ':' + input.substring(11, 13) + ':' + input.substring(13, 15),
+    );
   }
   if (!isValidDate(res)) {
     error('DAHE', 'Terminating! Invalid Date! Input:', input, 'date', res);
@@ -119,7 +147,17 @@ export function getDateFromString(input) {
 }
 
 export function getStringFromDate(date) {
-  return '' + (1900 + date.getYear()) + pad(date.getMonth() + 1, 2) + pad(date.getDate(), 2) + 'T' + pad(date.getHours() - 2, 2) + pad(date.getMinutes(), 2) + pad(date.getSeconds(), 2);
+  // (date.getTimezoneOffset() / 60)
+  return (
+    '' +
+    (1900 + date.getYear()) +
+    pad(date.getMonth() + 1, 2) +
+    pad(date.getDate(), 2) +
+    'T' +
+    pad(date.getHours(), 2) +
+    pad(date.getMinutes(), 2) +
+    pad(date.getSeconds(), 2)
+  );
 }
 
 export function cloneDate(date) {
