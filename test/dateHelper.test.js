@@ -3,6 +3,7 @@ import {
   _testing_date_helper,
   cloneDate,
   dateToIsoString,
+  dateToWeekNumber,
   getDateByDayAndSetPos,
   getNextWeekday,
   getPreviousWeekday,
@@ -115,6 +116,25 @@ describe('Date Helper Tests', () => {
       const tz = Math.abs(date.getTimezoneOffset()) / 60;
       date = getDateByDayAndSetPos(date, day, setPos);
       assert.equal(dateToIsoString(date), expected + 'T15:10:24+0' + tz + ':00');
+    });
+  });
+
+  [
+    {
+      date: new Date(2024, 6, 1),
+      expected: 27,
+    },
+    {
+      date: new Date(2024, 6, 7),
+      expected: 27,
+    },
+    {
+      date: new Date(2024, 6, 8),
+      expected: 28,
+    },
+  ].forEach(({ date, expected }) => {
+    it(`getting week number for \'${getStringFromDate(date)}\'`, function () {
+      assert.equal(dateToWeekNumber(date), expected);
     });
   });
 });
