@@ -1,5 +1,6 @@
+import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
 import { waitSyncMS } from '../util/generalUtil.js';
-import { debug, info } from '../util/logging.js';
+import { debug, info, warn } from '../util/logging.js';
 import { FEATURE_STATUS } from './featureClass.js';
 
 let Q = [];
@@ -22,10 +23,10 @@ export function addFeaturesToQ(featureSet) {
       'Q was full. Max amount is 50. Did not add:',
       expandedFeatureSet.map((item) => item.name),
     );
-    if (Q[Q.length - 1].name !== 'CLEAR_CACHES') {
-      Q.push(FEATURES.CLEAR_CACHES.clone());
-      waitSyncMS(1);
-    }
+    // if (Q[Q.length - 1].name !== 'CLEAR_CACHES') {
+    // Q.push(FEATURES.CLEAR_CACHES.clone());
+    // waitSyncMS(1);
+    // }
   } else {
     info(
       'WORK',
@@ -58,9 +59,9 @@ async function workOnNextFeature() {
     } catch (e) {
       try {
         if (e instanceof TicketError) {
-          await sendMail(e.ticket, e.message, e.stack);
+          await dispatcherJsConfig.errorHandlerFunction(e.ticket, e.message, e.stack);
         } else {
-          await sendMail('PAUC-5', e.message, e.stack);
+          await dispatcherJsConfig.errorHandlerFunction('PAUC-5', e.message, e.stack);
         }
       } catch (e2) {
         warn('WORK', 'Unable to send mail:', e2);

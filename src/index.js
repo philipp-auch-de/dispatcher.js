@@ -17,7 +17,7 @@ export {
   cloneDate,
   dateToWeekNumber,
 } from './util/dateHelper.js';
-export { config } from './dispatcherJsConfig.js';
+export { dispatcherJsConfig } from './dispatcherJsConfig.js';
 export { _callUrl } from './util/httpHelper.js';
 export { Feature, FEATURE_STATUS } from './work/featureClass.js';
 export {
@@ -30,4 +30,5 @@ export {
   getCurrentFeature,
   startWorking,
   setCurrentlyWorkingOn,
+  cancelFeatureRequested,
 } from './work/workQ.js';
