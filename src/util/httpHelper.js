@@ -1,5 +1,5 @@
 import pkg from 'xhr2';
-import { config } from '../dispatcherJsConfig.js';
+import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
 import { debug } from './logging.js';
 
 export async function _callUrl(method, url, data) {
@@ -14,7 +14,7 @@ export async function _callUrl(method, url, data) {
     };
     xhr.open(method, url);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    if (config.DEBUG_GET_CALLS) debug('BASE', method + ' ' + url + ' ' + (!data ? '' : data + ' '), 'call started');
+    if (dispatcherJsConfig.DEBUG_GET_CALLS) debug('BASE', method + ' ' + url + ' ' + (!data ? '' : data + ' '), 'call started');
     xhr.send(data);
   });
 }
