@@ -19,3 +19,15 @@ export {
 } from './util/dateHelper.js';
 export { config } from './dispatcherJsConfig.js';
 export { _callUrl } from './util/httpHelper.js';
+export { Feature, FEATURE_STATUS } from './work/featureClass.js';
+export {
+  addFeaturesToQ,
+  terminate,
+  resetQ,
+  addEventToList,
+  getCurrentQ,
+  getPastQ,
+  getCurrentFeature,
+  startWorking,
+  setCurrentlyWorkingOn,
+} from './work/workQ.js';
