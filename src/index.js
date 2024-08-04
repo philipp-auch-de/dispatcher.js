@@ -30,6 +30,7 @@ export {
   getCurrentFeature,
   startWorking,
   setCurrentlyWorkingOn,
+  currentlyWorkingOn,
   cancelFeatureRequested,
 } from './work/workQ.js';
 
