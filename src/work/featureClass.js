@@ -1,4 +1,4 @@
-import { dispatcherJsConfig } from '../dispatcherJsConfig';
+import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
 
 export const FEATURE_STATUS = {
   ACTIVE: 'ACTIVE',
