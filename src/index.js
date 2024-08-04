@@ -42,5 +42,3 @@ export function init(errorHandlerFunction) {
   }
   dispatcherJsConfig.errorHandlerFunction = errorHandlerFunction;
 }
-
-init(() => {});
