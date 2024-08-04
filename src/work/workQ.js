@@ -1,5 +1,5 @@
 import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
-import { waitSyncMS } from '../util/generalUtil.js';
+import { sleep, waitSyncMS } from '../util/generalUtil.js';
 import { debug, info, warn } from '../util/logging.js';
 import { FEATURE_STATUS } from './featureClass.js';
 
