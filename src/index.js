@@ -1,7 +1,6 @@
 import { dispatcherJsConfig } from './dispatcherJsConfig.js';
 import { error, info } from './util/logging.js';
 import { getVersion, getVersionDate } from './util/version.js';
-
 export { fine, debug, info, warn, error, errorWithTicket, TicketError } from './util/logging.js';
 export { SPACE, QUOTATION, HASHTAG, AMPERSAND, APOSTROPHE, BRACKET_OPEN, BRACKET_CLOSE, SMALLER, EQUALS, TILDE, AE } from './util/HTMLHelper.js';
 export { sleep, pad, waitSyncMS } from './util/generalUtil.js';

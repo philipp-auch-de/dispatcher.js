@@ -1,10 +1,9 @@
-import fs from 'node:fs';
 import { warn } from './logging.js';
+import versionData from './../../version.json' with { type: 'json' };;
 
 export function getVersion() {
   try {
-    const data = fs.readFileSync('./version.json', 'utf8');
-    return JSON.parse(data).version;
+    return versionData.version;
   } catch (err) {
     warn('DISPATCHER.JS', 'Unable to read version information:', err);
   }
@@ -13,8 +12,7 @@ export function getVersion() {
 
 export function getVersionDate() {
   try {
-    const data = fs.readFileSync('./version.json', 'utf8');
-    return JSON.parse(data).built;
+    return versionData.built;
   } catch (err) {
     warn('DISPATCHER.JS', 'Unable to read version information:', err);
   }
