@@ -1,14 +1,6 @@
 import { dispatcherJsConfig } from './dispatcherJsConfig.js';
-import { error } from './util/logging.js';
-
-export function init(errorHandlerFunction) {
-  console.log('dispatcher.js is now initializing');
-  if (!errorHandlerFunction) {
-    error('DISPATCHER.JS', 'No errorHandlerFunction was provided which is needed for dispatcher.js to start. Application will now exit');
-    process.exit(1);
-  }
-  dispatcherJsConfig.errorHandlerFunction = errorHandlerFunction;
-}
+import { error, info } from './util/logging.js';
+import { getVersion, getVersionDate } from './util/version.js';
 
 export { fine, debug, info, warn, error, errorWithTicket, TicketError } from './util/logging.js';
 export { SPACE, QUOTATION, HASHTAG, AMPERSAND, APOSTROPHE, BRACKET_OPEN, BRACKET_CLOSE, SMALLER, EQUALS, TILDE, AE } from './util/HTMLHelper.js';
@@ -40,3 +32,15 @@ export {
   setCurrentlyWorkingOn,
   cancelFeatureRequested,
 } from './work/workQ.js';
+
+export function init(errorHandlerFunction) {
+  console.log('dispatcher.js is now initializing');
+  info('DISPATCHER.JS', 'Currently running with', getVersion(), 'released on', getVersionDate());
+  if (!errorHandlerFunction) {
+    error('DISPATCHER.JS', 'No errorHandlerFunction was provided which is needed for dispatcher.js to start. Application will now exit');
+    process.exit(1);
+  }
+  dispatcherJsConfig.errorHandlerFunction = errorHandlerFunction;
+}
+
+init(() => {});
