@@ -1,5 +1,13 @@
-export function init() {
+import { dispatcherJsConfig } from './dispatcherJsConfig.js';
+import { error } from './util/logging.js';
+
+export function init(errorHandlerFunction) {
   console.log('dispatcher.js is now initializing');
+  if (!errorHandlerFunction) {
+    error('DISPATCHER.JS', 'No errorHandlerFunction was provided which is needed for dispatcher.js to start. Application will now exit');
+    process.exit(1);
+  }
+  dispatcherJsConfig.errorHandlerFunction = errorHandlerFunction;
 }
 
 export { fine, debug, info, warn, error, errorWithTicket, TicketError } from './util/logging.js';
