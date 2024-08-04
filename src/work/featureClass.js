@@ -1,3 +1,5 @@
+import { dispatcherJsConfig } from '../dispatcherJsConfig';
+
 export const FEATURE_STATUS = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
@@ -33,7 +35,7 @@ export class Feature {
 
     const res = [];
     this.prerequisites.forEach((item) => {
-      if (FEATURES[item]) res.push(...FEATURES[item].getPrerequisitesAndFeature());
+      if (dispatcherJsConfig.allFeatureSet[item]) res.push(...dispatcherJsConfig.allFeatureSet[item].getPrerequisitesAndFeature());
     });
     res.push(this.clone());
     return res;

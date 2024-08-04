@@ -32,7 +32,8 @@ export {
   currentlyWorkingOn,
   cancelFeatureRequested,
 } from './work/workQ.js';
-export function init(errorHandlerFunction) {
+
+export function init(errorHandlerFunction, allFeatureSet) {
   info('DISPATCHER.JS', 'Now initializing');
   info('DISPATCHER.JS', 'Currently running with', getVersion(), 'released on', getVersionDate());
   if (!errorHandlerFunction) {
@@ -40,4 +41,5 @@ export function init(errorHandlerFunction) {
     process.exit(1);
   }
   dispatcherJsConfig.errorHandlerFunction = errorHandlerFunction;
+  dispatcherJsConfig.allFeatureSet = allFeatureSet;
 }
