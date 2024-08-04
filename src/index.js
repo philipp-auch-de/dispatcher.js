@@ -34,7 +34,7 @@ export {
 } from './work/workQ.js';
 
 export function init(errorHandlerFunction) {
-  console.log('dispatcher.js is now initializing');
+  info('DISPATCHER.JS', 'Now initializing');
   info('DISPATCHER.JS', 'Currently running with', getVersion(), 'released on', getVersionDate());
   if (!errorHandlerFunction) {
     error('DISPATCHER.JS', 'No errorHandlerFunction was provided which is needed for dispatcher.js to start. Application will now exit');
