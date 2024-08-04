@@ -1,6 +1,6 @@
 import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
 import { sleep, waitSyncMS } from '../util/generalUtil.js';
-import { debug, info, warn } from '../util/logging.js';
+import { debug, info, TicketError, warn } from '../util/logging.js';
 import { FEATURE_STATUS } from './featureClass.js';
 
 let Q = [];
@@ -70,7 +70,6 @@ async function workOnNextFeature() {
       console.log(e.stack);
       resetQ();
       info('WORK', 'Clearing cache after error');
-      await clearAllCaches();
     }
     // printStatistics();
   } else {
