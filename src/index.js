@@ -16,6 +16,7 @@ export {
   cloneDate,
   dateToWeekNumber,
 } from './util/dateHelper.js';
+
 export { dispatcherJsConfig } from './dispatcherJsConfig.js';
 export { _callUrl } from './util/httpHelper.js';
 export { Feature, FEATURE_STATUS } from './work/featureClass.js';
