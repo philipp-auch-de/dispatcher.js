@@ -6,9 +6,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "test": "mocha --inline-diffs --parallel --require test/fixtures.mjs",
-    "tests": "mocha --inline-diffs --parallel --require test/fixtures.mjs"
+    "start": "node --no-warnings=ExperimentalWarning src/index.js",
+    "test": "mocha --no-warnings=ExperimentalWarning --inline-diffs --parallel --require test/fixtures.mjs",
+    "tests": "mocha --no-warnings=ExperimentalWarning --inline-diffs --parallel --require test/fixtures.mjs"
   },
   "keywords": [],
   "author": "",
