@@ -1,6 +1,6 @@
 import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
 import { sleep, waitSyncMS } from '../util/generalUtil.js';
-import { debug, info, TicketError, warn } from '../util/logging.js';
+import { debug, fine, info, TicketError, warn } from '../util/logging.js';
 import { FEATURE_STATUS } from './featureClass.js';
 
 let Q = [];
@@ -160,11 +160,16 @@ export function setCurrentlyWorkingOn(text) {
 }
 
 export function addToFeatureResult(text) {
-  if (text && text.length > 0) {
-    currentFeature.result += '\n' + text;
+  if (!text || text.length <= 0) {
+    return;
+  }
+
+  if (currentFeature.result && currentFeature.result.length > 0) {
+    currentFeature.result += '<br>' + text;
   } else {
     currentFeature.result = text;
   }
+  fine('WORK', 'Setting result to:', currentFeature.result);
 }
 
 export function setFeatureResult(text) {
