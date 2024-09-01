@@ -31,6 +31,8 @@ export {
   setCurrentlyWorkingOn,
   currentlyWorkingOn,
   cancelFeatureRequested,
+  setFeatureResult,
+  addToFeatureResult,
 } from './work/workQ.js';
 
 export function init(errorHandlerFunction, allFeatureSet) {

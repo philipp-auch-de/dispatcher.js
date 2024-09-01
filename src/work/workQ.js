@@ -159,6 +159,10 @@ export function setCurrentlyWorkingOn(text) {
   currentlyWorkingOn = text;
 }
 
+export function addToFeatureResult(text) {
+  currentFeature.result += text;
+}
+
 export function setFeatureResult(text) {
   currentFeature.result = text;
 }
