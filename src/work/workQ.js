@@ -160,7 +160,11 @@ export function setCurrentlyWorkingOn(text) {
 }
 
 export function addToFeatureResult(text) {
-  currentFeature.result += text;
+  if (text && text.length > 0) {
+    currentFeature.result += '\n' + text;
+  } else {
+    currentFeature.result = text;
+  }
 }
 
 export function setFeatureResult(text) {
