@@ -159,6 +159,10 @@ export function setCurrentlyWorkingOn(text) {
   currentlyWorkingOn = text;
 }
 
+export function setFeatureResult(text) {
+  currentFeature.result = text;
+}
+
 // ****** TEST SETUP ******
 export const _testing_workQ = {};
 _testing_workQ.resetAfterUnitTest = resetAfterUnitTest;

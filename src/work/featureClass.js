@@ -12,6 +12,7 @@ export class Feature {
   params;
   timeAdded;
   prerequisites = [];
+  result;
 
   constructor(name, entry, prerequisites) {
     this.name = name;
@@ -27,6 +28,7 @@ export class Feature {
     newFeature.params = this.params;
     newFeature.timeAdded = this.timeAdded;
     newFeature.prerequisites = this.prerequisites;
+    newFeature.result = this.result;
     return newFeature;
   }
 
