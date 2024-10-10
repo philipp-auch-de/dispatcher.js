@@ -9,7 +9,7 @@ describe('Smoke Screen', () => {
   function dummy() {}
 
   it('Test init', () => {
-    init(dummy);
+    init({ errorHandler: dummy });
     assert.equal('s', 's');
   });
 });

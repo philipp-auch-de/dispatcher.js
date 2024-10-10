@@ -39,7 +39,7 @@ export function init(handlers, allFeatureSet) {
   info('DISPATCHER.JS', 'Now initializing');
   info('DISPATCHER.JS', 'Currently running with', getVersion(), 'released on', getVersionDate());
   if (!handlers.errorHandler) {
-    error('DISPATCHER.JS', 'No errorHandlerFunction was provided which is needed for dispatcher.js to start. Application will now exit');
+    error('DISPATCHER.JS', 'No errorHandler was provided which is needed for dispatcher.js to start. Application will now exit');
     process.exit(1);
   }
   if (!handlers.emptyQHandler) {
