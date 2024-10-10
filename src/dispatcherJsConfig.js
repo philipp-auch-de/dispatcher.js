@@ -3,7 +3,7 @@ const dispatcherJsConfig = {
   DEBUG_MODE: 1,
   DEBUG_GET_CALLS: 0,
   IS_UNIT_TEST: false,
-  errorHandlerFunction: null,
+  handlers: null,
   allFeatureSet: [],
 };
 

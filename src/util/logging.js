@@ -1,4 +1,5 @@
 import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
+import { getCurrentFeature } from '../work/workQ.js';
 import { dateToIsoString } from './dateHelper.js';
 
 export class TicketError extends Error {
@@ -41,8 +42,7 @@ export function error(source, ...data) {
 
 function log(level, color, source, data) {
   const args = Array.prototype.slice.call(data);
-  const featureString = 'NO_FEATURE';
-  // const featureString = getCurrentFeature() ? getCurrentFeature().name : 'NO_FEATURE';
+  const featureString = getCurrentFeature() ? getCurrentFeature().name : 'NO_FEATURE';
   let message = color;
   if (!dispatcherJsConfig.IS_UNIT_TEST) message += dateToIsoString(new Date());
   message += '[' + level + ']' + '[' + featureString + ']' + '[' + source + ']';

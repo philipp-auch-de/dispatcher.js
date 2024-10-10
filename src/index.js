@@ -35,13 +35,20 @@ export {
   addToFeatureResult,
 } from './work/workQ.js';
 
-export function init(errorHandlerFunction, allFeatureSet) {
+export function init(handlers, allFeatureSet) {
   info('DISPATCHER.JS', 'Now initializing');
   info('DISPATCHER.JS', 'Currently running with', getVersion(), 'released on', getVersionDate());
-  if (!errorHandlerFunction) {
+  if (!handlers.errorHandler) {
     error('DISPATCHER.JS', 'No errorHandlerFunction was provided which is needed for dispatcher.js to start. Application will now exit');
     process.exit(1);
   }
-  dispatcherJsConfig.errorHandlerFunction = errorHandlerFunction;
+  if (!handlers.emptyQHandler) {
+    handlers.emptyQHandler = doNothing;
+  }
+  dispatcherJsConfig.handlers = handlers;
   dispatcherJsConfig.allFeatureSet = allFeatureSet;
+}
+
+async function doNothing() {
+  // intentionally empty
 }

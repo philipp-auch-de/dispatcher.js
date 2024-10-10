@@ -56,19 +56,20 @@ async function workOnNextFeature() {
       currentlyWorkingOn = '';
       cancelFeatureRequested = false;
       await currentFeature.entry();
+      if (Q.length == 0) await dispatcherJsConfig.handlers.emptyQHandler();
     } catch (e) {
       try {
         if (e instanceof TicketError) {
-          await dispatcherJsConfig.errorHandlerFunction(e.ticket, e.message, e.stack);
+          await dispatcherJsConfig.handlers.errorHandler(e.ticket, e.message, e.stack);
         } else {
-          await dispatcherJsConfig.errorHandlerFunction('PAUC-5', e.message, e.stack);
+          await dispatcherJsConfig.handlers.errorHandler('PAUC-5', e.message, e.stack);
         }
       } catch (e2) {
         warn('WORK', 'Unable to send mail:', e2);
       }
       addErrorToCurrentFeature(e);
       console.log(e.stack);
-      resetQ();
+      await resetQ();
       info('WORK', 'Clearing cache after error');
     }
     // printStatistics();
@@ -97,11 +98,12 @@ export function terminate() {
   cancelFeatureRequested = true;
 }
 
-export function resetQ() {
+export async function resetQ() {
   info('WORK', 'Reset Q!');
   cancelFeatureRequested = true;
   Q = [];
   addFeaturesToQ([]);
+  await dispatcherJsConfig.handlers.emptyQHandler();
 }
 
 export function addEventToList(name, params) {
