@@ -62,7 +62,7 @@ async function workOnNextFeature() {
         if (e instanceof TicketError) {
           await dispatcherJsConfig.handlers.errorHandler(e.ticket, e.message, e.stack);
         } else {
-          await dispatcherJsConfig.handlers.errorHandler('PAUC-5', e.message?.length() > 0 ? e.message : e, e.stack);
+          await dispatcherJsConfig.handlers.errorHandler('PAUC-5', e.message?.length > 0 ? e.message : e, e.stack);
         }
       } catch (e2) {
         warn('WORK', 'Unable to send mail:', e2);
