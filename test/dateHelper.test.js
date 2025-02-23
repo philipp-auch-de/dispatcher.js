@@ -15,6 +15,9 @@ describe('minutesToString Tests', () => {
   it('only minutes', () => {
     assert.equal(minutesToString(42, true), '42 min');
   });
+  it('less than minutes', () => {
+    assert.equal(minutesToString(42.23, true), '42 min');
+  });
 
   it('only minutes but not shown', () => {
     assert.equal(minutesToString(42, false), '42 min');
