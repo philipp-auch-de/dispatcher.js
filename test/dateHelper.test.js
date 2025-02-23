@@ -8,7 +8,26 @@ import {
   getNextWeekday,
   getPreviousWeekday,
   getStringFromDate,
+  minutesToString,
 } from '../src/util/dateHelper.js';
+
+describe('minutesToString Tests', () => {
+  it('only minutes', () => {
+    assert.equal(minutesToString(42, true), '42 min');
+  });
+
+  it('only minutes but not shown', () => {
+    assert.equal(minutesToString(42, false), '42 min');
+  });
+
+  it('only minutes', () => {
+    assert.equal(minutesToString(142, true), '2 h 22 min');
+  });
+
+  it('only minutes but not shown', () => {
+    assert.equal(minutesToString(142, false), '2 h');
+  });
+});
 
 describe('Date Helper Tests', () => {
   it('add hours positive same day', () => {

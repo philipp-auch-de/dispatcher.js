@@ -14,6 +14,7 @@ export {
   getDateFromString,
   getStringFromDate,
   cloneDate,
+  minutesToString,
   dateToWeekNumber,
 } from './util/dateHelper.js';
 export { dispatcherJsConfig } from './dispatcherJsConfig.js';

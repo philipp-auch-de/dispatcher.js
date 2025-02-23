@@ -179,6 +179,14 @@ function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
 }
 
+export function minutesToString(minutes, showMinutes = true) {
+  const hours = Math.floor(minutes / 60);
+  const minutesLeft = minutes % 60;
+  if (hours === 0) return minutesLeft + ' min';
+  if (showMinutes) return hours + ' h ' + minutesLeft + ' min';
+  return hours + ' h';
+}
+
 // ****** TEST SETUP ******
 export const _testing_date_helper = {};
 _testing_date_helper.getDateByDayAndSetPos = getDateByDayAndSetPos;
