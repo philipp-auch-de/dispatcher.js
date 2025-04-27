@@ -7,5 +7,11 @@
       "request": "launch",
       "type": "node-terminal"
     },
+    {
+      "command": "npm run start",
+      "name": "npm run start",
+      "request": "launch",
+      "type": "node-terminal"
+    },
   ]
 }

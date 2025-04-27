@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dispatcher.JS Status</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="status.css" />
+    <meta http-equiv="refresh" content="2" />
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function (event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+      });
+
+      window.onbeforeunload = function (e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+      };
+    </script>
+  </head>
+
+  <body>
+    <p style="text-align: center">Startup: <%= startupTime; %></p>
+
+    <div style="display: flex; justify-content: center; gap: 2em">
+      <div>
+        <form action="/trigger" method="get" id="triggerForm">
+          <button type="submit" class="btn btn-outline-primary btn-sm" form="triggerForm">TRIGGER</button>
+        </form>
+      </div>
+      <div>
+        <form action="/pause" method="get" id="pauseForm">
+          <button type="submit" class="btn btn-outline-primary btn-sm" form="pauseForm">PAUSE</button>
+        </form>
+      </div>
+      <div>
+        <form action="/reset" method="get" id="resetForm">
+          <button type="submit" class="btn btn-outline-primary btn-sm" form="resetForm">RESET</button>
+        </form>
+      </div>
+      <div>
+        <form action="/reboot" method="get" id="rebootForm">
+          <button type="submit" class="btn btn-outline-primary btn-sm" form="rebootForm">REBOOT</button>
+        </form>
+      </div>
+    </div>
+
+    <br />
+
+    <!-- current feature -->
+    <% if (currentFeature) { %>
+    <div class="flexContainer currentFeature">
+      <%= currentFeature.name; %>
+      <b> <%= currentFeature.getDurationString(); %> </b>
+      <% if (currentFeature.params) { %>
+      <br /><span>Params: <%= currentFeature.params; %></span>
+      <% } %>
+      <span style="font-size: 0.5rem">Added: <%= currentFeature.timeAdded.toLocaleDateString(undefined, dateOptions); %></span>
+
+      <% if (currentlyWorkingOn.length> 0) { %>
+      <br /><span>CWO: <%= currentlyWorkingOn; %></span>
+      <% } %> <% if (currentFeature.result && currentFeature.result.length> 0) { %>
+      <br /><span
+        ><b>Result</b><br />
+        <%- currentFeature.result; %></span
+      >
+      <% } %>
+    </div>
+    <% } %>
+
+    <div class="leftHalf">
+      <span class="counter">Counter: <%= currentQ.length; %></span>
+      <ul>
+        <% for(var i=0; i < currentQ.length; i++) { %>
+        <li class="flexContainer currentQ<%= (currentQ[i].type === 'EVENT') ? ' eventType' : '' %>">
+          <span style="flex: 1 0 45%"> <%= currentQ[i].name; %> </span>
+          <% if (currentQ[i].params) { %>
+          <br /><span>Params: <%= currentQ[i].params; %></span>
+          <% } %>
+          <span style="flex: 1 0 45%; font-size: 0.5rem; text-align: right"
+            >Added: <%= currentQ[i].timeAdded.toLocaleDateString( undefined, dateOptions); %></span
+          >
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <div class="rightHalf">
+      <span class="counter">Counter: <%= pastQ.length; %></span>
+      <ul>
+        <% for(var i=0; i < pastQ.length; i++) { %>
+        <li
+          class="flexContainer <%= (pastQ[i].errorForFeature && pastQ[i].errorForFeature.length > 0) ? 'pastError' : (pastQ[i].result && pastQ[i].result.length > 0) ? 'pastResult' : 'pastQ' %> <%= (pastQ[i].type === 'EVENT') ? ' eventType' : '' %>"
+        >
+          <span style="flex: 2 0 40%"> <%= pastQ[i].name; %> </span>
+          <span style="flex: 1 0 20%; text-align: right"><b> <%= pastQ[i].durationString; %> </b></span>
+          <% if (pastQ[i].params) { %>
+          <br /><span>Params: <%= pastQ[i].params; %></span>
+          <% } %>
+
+          <span style="flex: 1 0 20%; font-size: 0.5rem; text-align: right">
+            Added: <%= pastQ[i].timeAdded.toLocaleDateString( undefined, dateOptions); %> <br />
+            Finished: <%= new Date(pastQ[i].startDate).toLocaleDateString(undefined, dateOptions); %>
+          </span>
+          <% if (pastQ[i].result && pastQ[i].result.length> 0) { %>
+          <span>
+            <b>Result</b><br />
+            <%- pastQ[i].result; %></span
+          >
+          <% } %>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </body>
+</html>

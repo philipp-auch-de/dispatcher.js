@@ -1,0 +1,78 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: "Roboto Condensed", serif;
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    padding-top: 1.5em;
+    white-space: nowrap;
+}
+
+.currentFeature,
+.currentQ,
+.pastResult,
+.pastError,
+.pastQ {
+    color: black;
+    border-radius: 0.5rem;
+    border: 0;
+    padding: 0.3em;
+    list-style-type: none;
+    margin: 0.2em 0;
+}
+
+.currentQ {
+    background-color: dodgerblue;
+}
+
+.currentFeature {
+    background-color: lightgreen;
+}
+
+.pastQ {
+    background-color: lightgrey;
+}
+
+.pastError {
+    background-color: lightcoral;
+    font-weight: bold;
+}
+
+.pastResult {
+    background-color: white;
+}
+
+.leftHalf {
+    position: absolute;
+    left: 0;
+    width: 50%;
+}
+
+.rightHalf {
+    position: absolute;
+    right: 0;
+    width: 50%;
+}
+
+.counter {
+    position: absolute;
+    left: 45%;
+
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 2em;
+}
+
+.eventType {
+    background-color: lightblue;
+}
