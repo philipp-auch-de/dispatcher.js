@@ -2,6 +2,7 @@ import { dispatcherJsConfig } from '../dispatcherJsConfig.js';
 import { sleep, waitSyncMS } from '../util/generalUtil.js';
 import { debug, fine, info, TicketError, warn } from '../util/logging.js';
 import { FEATURE_STATUS } from './featureClass.js';
+import { featureError, featureSuccess } from './health.js';
 
 let Q = [];
 let pastQ = [];
@@ -56,6 +57,7 @@ async function workOnNextFeature() {
       currentlyWorkingOn = '';
       cancelFeatureRequested = false;
       await currentFeature.entry();
+      featureSuccess(currentFeature.name);
       if (Q.length == 0) await dispatcherJsConfig.handlers.emptyQHandler();
     } catch (e) {
       try {
@@ -67,6 +69,7 @@ async function workOnNextFeature() {
       } catch (e2) {
         warn('WORK', 'Unable to send mail:', e2);
       }
+      featureError(currentFeature.name, e.message?.length > 0 ? e.message : e);
       addErrorToCurrentFeature(e);
       console.log(e.stack);
       await resetQ();

@@ -35,6 +35,7 @@ export {
   setFeatureResult,
   addToFeatureResult,
 } from './work/workQ.js';
+export { getHealth } from './work/health.js';
 
 export function init(handlers, allFeatureSet) {
   info('DISPATCHER.JS', 'Now initializing');
