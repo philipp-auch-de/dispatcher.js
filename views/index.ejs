@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dispatcher.JS Status</title>
+    <title><%= pageTitle; %></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed" />
     <link
       rel="stylesheet"
@@ -31,6 +31,7 @@
 
   <body>
     <p style="text-align: center">Startup: <%= startupTime; %></p>
+    <p style="text-align: center">Dispatcher.js <%= dispatcherVersion; %></p>
 
     <div style="display: flex; justify-content: center; gap: 2em">
       <div>
@@ -115,8 +116,13 @@
           <% if (pastQ[i].result && pastQ[i].result.length> 0) { %>
           <span>
             <b>Result</b><br />
-            <%- pastQ[i].result; %></span
-          >
+            <%- pastQ[i].result; %>
+          </span>
+          <% } %> <% if (pastQ[i].errorForFeature && pastQ[i].errorForFeature.length > 0) { %>
+          <span>
+            <b>Error</b><br />
+            <%- pastQ[i].errorForFeature; %>
+          </span>
           <% } %>
         </li>
         <% } %>
